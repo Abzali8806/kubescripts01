@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-app
+  labels:
+    app: acg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: abzali8806/nnacg-web:0.5
+        ports:
+        - containerPort: 8080
